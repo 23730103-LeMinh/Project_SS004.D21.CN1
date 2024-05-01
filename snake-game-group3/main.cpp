@@ -190,6 +190,20 @@ void UserInput()
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    string playerName;
+    cout << "enter your name: ";
+    cin >> playerName;
+    int dfc = SetDifficulty();
+
+    GameInit();
+    while (!isGameOver) {
+        GameRender(playerName);
+        UserInput();
+        UpdateGame();
+        // creating a delay for according to the chosen
+        // difficulty
+        Sleep(dfc);
+    }
+
     return 0;
 }

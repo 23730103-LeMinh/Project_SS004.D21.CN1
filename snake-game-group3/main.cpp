@@ -1,5 +1,7 @@
-#include <iostream>
 
+#include <conio.h>
+#include <iostream>
+#include <windows.h>
 using namespace std;
 
 // Khoi tao chieu rong và cao cho man hinh game

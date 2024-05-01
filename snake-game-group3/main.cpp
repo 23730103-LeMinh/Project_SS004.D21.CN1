@@ -1,5 +1,7 @@
-#include <iostream>
 
+#include <conio.h>
+#include <iostream>
+#include <windows.h>
 using namespace std;
 
 // Khoi tao chieu rong và cao cho man hinh game
@@ -190,6 +192,20 @@ void UserInput()
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    string playerName;
+    cout << "enter your name: ";
+    cin >> playerName;
+    int dfc = SetDifficulty();
+
+    GameInit();
+    while (!isGameOver) {
+        GameRender(playerName);
+        UserInput();
+        UpdateGame();
+        // creating a delay for according to the chosen
+        // difficulty
+        Sleep(dfc);
+    }
+
     return 0;
 }

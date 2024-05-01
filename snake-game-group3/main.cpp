@@ -1,5 +1,7 @@
-#include <iostream>
 
+#include <conio.h>
+#include <iostream>
+#include <windows.h>
 using namespace std;
 
 // Khoi tao chieu rong và cao cho man hinh game
@@ -77,6 +79,32 @@ void UpdateGame()
 	}
 }
 
+// Function to set the game difficulty level
+int SetDifficulty()
+{
+	int dfc, choice;
+	cout << "\nSET DIFFICULTY\n1: Easy\n2: Medium\n3: hard "
+			"\nNOTE: if not chosen or pressed any other "
+			"key, the difficulty will be automatically set "
+			"to medium\nChoose difficulty level: ";
+	cin >> choice;
+	switch (choice) {
+	case '1':
+		dfc = 50;
+		break;
+	case '2':
+		dfc = 100;
+		break;
+	case '3':
+		dfc = 150;
+		break;
+	default:
+		dfc = 100;
+	}
+	return dfc;
+}
+
+
 void GameInit()
 {
     isGameOver = false;
@@ -136,8 +164,48 @@ void GameRender(string playerName)
          << endl;
 }
 
+// Function to handle user UserInput
+void UserInput()
+{
+    // Checks if a key is pressed or not
+    if (_kbhit()) {
+        // Getting the pressed key
+        switch (_getch()) {
+        case 'a':
+            sDir = LEFT;
+            break;
+        case 'd':
+            sDir = RIGHT;
+            break;
+        case 'w':
+            sDir = UP;
+            break;
+        case 's':
+            sDir = DOWN;
+            break;
+        case 'x':
+            isGameOver = true;
+            break;
+        }
+    }
+}
+
 int main()
 {
-    cout << "Hello world!" << endl;
+    string playerName;
+    cout << "enter your name: ";
+    cin >> playerName;
+    int dfc = SetDifficulty();
+
+    GameInit();
+    while (!isGameOver) {
+        GameRender(playerName);
+        UserInput();
+        UpdateGame();
+        // creating a delay for according to the chosen
+        // difficulty
+        Sleep(dfc);
+    }
+
     return 0;
 }

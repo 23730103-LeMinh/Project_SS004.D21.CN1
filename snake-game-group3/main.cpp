@@ -24,6 +24,16 @@ snakesDirection sDir;
 // boolean variable for checking game is over or not
 bool isGameOver;
 
+void GameInit()
+{
+    isGameOver = false;
+    sDir = STOP;
+    x = width / 2;
+    y = height / 2;
+    fruitCordX = rand() % width;
+    fruitCordY = rand() % height;
+    playerScore = 0;
+}
 
 // Function for creating the game board & rendering
 void GameRender(string playerName)
